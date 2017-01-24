@@ -30,7 +30,7 @@ var bio = {
 	},
 	"welcomeMessage": "Welcome to my online interactive resume",
 	"skills": [
-		'Java','Struts2','Spring Boot','String framework'
+		'Java','Struts2','Spring Boot','Spring framework'
 	],
 	"bioPic": "images/fry.jpg"
 };
@@ -155,7 +155,7 @@ projects.display();
 
 
 function displayWork(){
-	var work = {
+	 work = {
 	"jobs":[{
 		title : "Java Web Developer",
 		employer : "Lanqiao IT school",
