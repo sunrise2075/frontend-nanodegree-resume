@@ -1,10 +1,12 @@
 var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
+	jshint = require('gulp-jshint');
 	rename = require('gulp-rename'),
 	minifyCSS = require('gulp-minify-css'),
 	gulpPlumber = require('gulp-plumber'),
 	connect = require('gulp-connect'),
-	csslint = require('gulp-csslint');;
+	stylish = require('jshint-stylish'),
+	csslint = require('gulp-csslint');
 
 gulp.task('connect', function() {
   connect.server({
@@ -12,14 +14,20 @@ gulp.task('connect', function() {
     livereload: true
   });
 });
-	
+
 gulp.task('scripts',function(){
 	gulp.src('js/resumeBuilder.js')
 		.pipe(gulpPlumber()) 
 		.pipe(uglify())
-		.pipe(rename('resumeBuilder.min.js'))
+		//.pipe(rename('resumeBuilder.min.js'))
 		.pipe(gulp.dest('js/'))
 		.pipe(connect.reload());
+});
+
+gulp.task('jshint', function(){
+	return gulp.src('js/resumeBuilder.js')
+	.pipe(jshint())
+	.pipe(jshint.reporter(stylish));
 });
 
 gulp.task('styles', function(){
