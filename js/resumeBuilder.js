@@ -1,5 +1,8 @@
 var dataPlaceHolder = '%data%';
 
+/*
+*   bio object begin ......
+* */
 var bio = {
     "name": "CaoXiaohu",
     "role": "Java Senior Web Programmer",
@@ -66,23 +69,13 @@ bio.displayBasicInfo = function() {
 
 bio.displayBasicInfo();
 
-var education = {
-    "schools": [{
-            "name": "Zhengzhou Normal University",
-            "years": "2005.09-2008.07",
-            "city": "Zhengzhou City in Henan Province, PRC",
-            "major": ["Electronics Information Engineering and Technology"]
-        },
-        {
-            "name": "Shenzhen Trena Tech Education school",
-            "years": "2010.04-2010.11",
-            "city": "Shenzhen City in Guangdong Province, PRC",
-            "major": ["Java Enterprise Developer"]
-        }
-    ],
-    "onlineCourses": []
-};
+/*
+ *   bio object end ......
+ * */
 
+/**
+ * projects object begin......
+ * */
 var projects = {
     "projects": [{
             "title": "Project Title 1",
@@ -132,6 +125,104 @@ projects.display = function() {
 
 projects.display();
 
+/**
+ * projects object end......
+ * */
+/*
+ * education object begin ...
+ * */
+var education = {
+    "schools": [{
+        "name": "Zhengzhou Normal University",
+        "location": "No. 5, YingCai Road, HuiJi District, ZhengZhou City, HeNan Province, PRC",
+        "degree": "no degree",
+        "majors": ["Electronics Information Engineering and Technology"],
+        "dates": "2005.09-2008.07",
+        "url": "http://www.zztc.com.cn/",
+
+    },
+        {
+            "name": "Shenzhen Trena Tech Education school",
+            "location": "F518 Garden, BaoAn District, ShenZhen City, Guangdong Province, PRC",
+            "degree": "no degree",
+            "majors": ["Java developer, Web Developer"],
+            "dates": "2010.04-2010.11",
+            "url": "http://www.tedu.cn/"
+
+        }
+    ],
+    "onlineCourses": [{
+        "title": "Angular 2 - the Complete Guide",
+        "school": "Udemy",
+        "dates": "2016.1.4 - 2016.1.22",
+        "url": "https://www.udemy.com/the-complete-guide-to-angular-2/learn/v4/overview"
+    },{
+        "title": "Java Spring Framework 4 and Spring Certification",
+        "school": "Udemy",
+        "dates": "2016.1.22 - 2016.1.27",
+        "url": "https://www.udemy.com/spring-framework-4-course-and-core-spring-certification/learn/v4/overview"
+    }]
+};
+
+education.displayEdu = function(){
+    if(education.schools){
+        for(var school in education.schools){
+            if(education.schools.hasOwnProperty(school)){
+                $("#education").append(HTMLschoolStart);
+                var formattedSchoolName = HTMLschoolName.replace(dataPlaceHolder, education.schools[school].name);
+                $(".education-entry:last").append(formattedSchoolName);
+                var formattedSchoolLocation = HTMLschoolLocation.replace(dataPlaceHolder, education.schools[school].location);
+                $(".education-entry:last").append(formattedSchoolLocation);
+                var formattedSchoolDegree = HTMLschoolDegree.replace(dataPlaceHolder, education.schools[school].degree);
+                $(".education-entry:last").append(formattedSchoolDegree);
+                var formattedDates = HTMLschoolDates.replace(dataPlaceHolder, education.schools[school].dates);
+                $(".education-entry:last").append(formattedDates);
+
+                var majors = education.schools[school].majors;
+                if(majors && Array.isArray(majors) && majors.length > 0){
+                        for(var major in majors){
+                            if(majors.hasOwnProperty(major)){
+                                var formattedMajor = HTMLschoolMajor.replace(dataPlaceHolder, majors[major]);
+                                $(".education-entry:last").append(formattedMajor);
+                            }
+                        }
+                }
+            }
+        }
+    }
+
+    if(education.onlineCourses){
+        $(".education-entry:last").append(HTMLonlineClasses);
+        for(var course in education.onlineCourses){
+            if(education.onlineCourses.hasOwnProperty(course)){
+              var formattedTitle = HTMLonlineTitle.replace(dataPlaceHolder, education.onlineCourses[course].title);
+              $(".education-entry:last").append(formattedTitle);
+
+              var formattedSchool = HTMLonlineSchool.replace(dataPlaceHolder, education.onlineCourses[course].school);
+              $(".education-entry:last").append(formattedSchool);
+
+              var formattedOnlineDates = HTMLonlineDates.replace(dataPlaceHolder, education.onlineCourses[course].dates);
+              $(".education-entry:last").append(formattedOnlineDates);
+
+              var formattedUrl = HTMLonlineURL.replace(dataPlaceHolder, education.onlineCourses[course].url);
+              $(".education-entry:last").append(formattedUrl);
+
+            }
+        }
+    }
+
+    $("#education").show();
+};
+
+education.displayEdu();
+
+
+/*
+ * education object end ......
+ * */
+/**
+ * work object begin......
+ * */
 var work = {
         "jobs": [{
             title: "Java Web Developer",
@@ -171,24 +262,13 @@ work.displayWork= function() {
 
 work.displayWork();
 
-$(document).click(function(loc) {
-    var x = loc.pageX;
-    var y = loc.pageY;
-    console.log(x, y);
-});
+/**
+ * work object end......
+ * */
 
-function inName(name) {
-    name = name.trim().split(" ");
-    console.log(name);
-    name[1] = name[1].toUpperCase();
-    name[0] = name[0].slice(0, 1).toUpperCase() + name[0].slice[1].toLowerCase();
 
-    return name[0] + " " + name[1];
-}
-
-//$('#main').append(internationalizeButton);
+$('#main').append(internationalizeButton);
 
 $("#mapDiv").append(googleMap);
-
 
 initializeMap();
