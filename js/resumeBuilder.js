@@ -20,7 +20,7 @@ var bio = {
     "biopic": "images/fry.jpg"
 };
 
-bio.displayBasicInfo = function() {
+bio.display = function() {
     if (bio.role) {
         var formattedRole = HTMLheaderRole.replace(dataPlaceHolder, bio.role);
         $('#header').prepend(formattedRole);
@@ -67,7 +67,7 @@ bio.displayBasicInfo = function() {
 	}
 }
 
-bio.displayBasicInfo();
+bio.display();
 
 /*
  *   bio object end ......
@@ -110,12 +110,10 @@ projects.display = function() {
             $(".project-entry:last").append(formattedDesc);
 
             if (projects.projects[project].images.length > 0) {
-                for (var image in projects.projects[project].images) {
-                    if (projects.projects[project].images.hasOwnProperty(image)) {
-                        var formattedImage = HTMLprojectImage.replace(dataPlaceHolder, projects.projects[project].images[image]);
-                        $(".project-entry:last").append(formattedImage);
-                    }
-                }
+                projects.projects[project].images.forEach(function(image){
+                         var formattedImage = HTMLprojectImage.replace(dataPlaceHolder, image);
+                         $(".project-entry:last").append(formattedImage);
+                });
             }
         }
 
@@ -164,7 +162,7 @@ var education = {
     }]
 };
 
-education.displayEdu = function(){
+education.display = function(){
     if(education.schools){
         for(var school in education.schools){
             if(education.schools.hasOwnProperty(school)){
@@ -214,7 +212,7 @@ education.displayEdu = function(){
     $("#education").show();
 };
 
-education.displayEdu();
+education.display();
 
 
 /*
@@ -227,19 +225,21 @@ var work = {
         "jobs": [{
             title: "Java Web Developer",
             employer: "Lanqiao IT Company",
+            location: "High Park, NanShan District, ShenZhen City",
             years: 0.3,
             dates: 'August 2016 - December 2016',
             description: 'the description content 1, the description content 1, the description content 1, the description content 1,the description content 1'
         }, {
             title: "Java Web Developer",
             employer: "Shenzhen Coordinates Healthcare Information Technology Compony",
+            location: "High Park, NanShan District, ShenZhen City",
             years: 1.3,
             dates: 'Feburary 2014 - August 2016',
             description: 'the description content 2, the description content 2, the description content 2, the description content 2, the description content 2 '
         }]
     };
 
-work.displayWork= function() {
+work.display= function() {
 
     for (var job in work.jobs) {
 
@@ -260,7 +260,7 @@ work.displayWork= function() {
     }
 }
 
-work.displayWork();
+work.display();
 
 /**
  * work object end......
