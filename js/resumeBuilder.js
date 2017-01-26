@@ -121,23 +121,30 @@ var projects = {
 
 projects.display = function() {
     for (var project in projects.projects) {
-        $("#projects").append(HTMLprojectStart);
+		
+		if(projects.projects.hasOwnProperty(project)){
+			$("#projects").append(HTMLprojectStart);
 
-        var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
-        $(".project-entry:last").append(formattedTitle);
+			var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
+			$(".project-entry:last").append(formattedTitle);
 
-        var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
-        $(".project-entry:last").append(formattedDates);
+			var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
+			$(".project-entry:last").append(formattedDates);
 
-        var formattedDesc = HTMLprojectDescription.replace("%data%", projects.projects[project].desciption);
-        $(".project-entry:last").append(formattedDesc);
+			var formattedDesc = HTMLprojectDescription.replace("%data%", projects.projects[project].desciption);
+			$(".project-entry:last").append(formattedDesc);
 
-        if (projects.projects[project].images.length > 0) {
-            for (var image in projects.projects[project].images) {
-                var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[project].images[image]);
-                $(".project-entry:last").append(formattedImage);
-            }
-        }
+			if (projects.projects[project].images.length > 0) {
+				for (var image in projects.projects[project].images) {
+					if(projects.projects[project].images.hasOwnProperty(image)){
+						var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[project].images[image]);
+						$(".project-entry:last").append(formattedImage);					
+					}
+				}
+			}			
+		}
+		
+
     }
 };
 
@@ -164,17 +171,21 @@ function displayWork() {
     displayWork();
 
     for (var job in work.jobs) {
-        $('#workExperience').append(HTMLworkStart);
-        var formattedEmployer = HTMLworkEmployer.replace('%data%', work.jobs[job].employer);
-        var formattedTitle = HTMLworkTitle.replace('%data%', work.jobs[job].title);
-        var formattedEmployerTitle = formattedEmployer + formattedTitle;
+		
+		if(work.jobs.hasOwnProperty(job)){
+			$('#workExperience').append(HTMLworkStart);
+			var formattedEmployer = HTMLworkEmployer.replace('%data%', work.jobs[job].employer);
+			var formattedTitle = HTMLworkTitle.replace('%data%', work.jobs[job].title);
+			var formattedEmployerTitle = formattedEmployer + formattedTitle;
 
-        $('.work-entry:last').append(formattedEmployerTitle);
+			$('.work-entry:last').append(formattedEmployerTitle);
 
-        var formattedDates = HTMLworkDates.replace('%data%', work.jobs[job].dates);
-        $('.work-entry:last').append(formattedDates);
-        var formattedDesc = HTMLworkDescription.replace('%data%', work.jobs[job].description);
-        $('.work-entry:last').append(formattedDesc);
+			var formattedDates = HTMLworkDates.replace('%data%', work.jobs[job].dates);
+			$('.work-entry:last').append(formattedDates);
+			var formattedDesc = HTMLworkDescription.replace('%data%', work.jobs[job].description);
+			$('.work-entry:last').append(formattedDesc);			
+		}
+
     }
 }
 
