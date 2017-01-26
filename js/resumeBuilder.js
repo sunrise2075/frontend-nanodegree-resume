@@ -15,59 +15,63 @@ var bio = {
     "bioPic": "images/fry.jpg"
 };
 
-if (bio.role) {
-    var formattedRole = HTMLheaderRole.replace('%data%', bio.role);
-    $('#header').prepend(formattedRole);
+bio.display = function() {
+    if (bio.role) {
+        var formattedRole = HTMLheaderRole.replace('%data%', bio.role);
+        $('#header').prepend(formattedRole);
+    }
+
+    if (bio.name) {
+        var formattedName = HTMLheaderName.replace('%data%', bio.name);
+        $('#header').prepend(formattedName);
+    }
+
+    if (bio.bioPic) {
+        var formattedPic = HTMLbioPic.replace('%data%', bio.bioPic);
+        $('#header').append(formattedPic);
+    }
+
+    if (bio.welcomeMessage) {
+        var formattedWelcomeMessage = HTMLwelcomeMsg.replace('%data%', bio.welcomeMessage);
+        $('#header').append(formattedWelcomeMessage);
+    }
+
+    if (bio.contacts) {
+        var formattedMobile = HTMLmobile.replace('%data%', bio.contacts.mobile);
+        $('#topContacts').append(formattedMobile);
+
+        var formattedEmail = HTMLemail.replace('%data%', bio.contacts.email);
+        $('#topContacts').append(formattedEmail);
+
+        var formattedTwitter = HTMLtwitter.replace('%data%', bio.contacts.twitter);
+        $('#topContacts').append(formattedTwitter);
+
+        var formattedGithub = HTMLgithub.replace('%data%', bio.contacts.github);
+        $('#topContacts').append(formattedGithub);
+
+        var formattedLocation = HTMLlocation.replace('%data%', bio.contacts.location);
+        $('#topContacts').append(formattedLocation);
+    }
+
+
+    if (bio.skills.length > 0) {
+        $('#header').append(HTMLskillsStart);
+
+        var formattedSkills = HTMLskills.replace('%data%', bio.skills[0]);
+        $('#skills').append(formattedSkills);
+
+        formattedSkills = HTMLskills.replace('%data%', bio.skills[1]);
+        $('#skills').append(formattedSkills);
+
+        formattedSkills = HTMLskills.replace('%data%', bio.skills[2]);
+        $('#skills').append(formattedSkills);
+
+        formattedSkills = HTMLskills.replace('%data%', bio.skills[3]);
+        $('#skills').append(formattedSkills);
+    }
 }
 
-if (bio.name) {
-    var formattedName = HTMLheaderName.replace('%data%', bio.name);
-    $('#header').prepend(formattedName);
-}
-
-if (bio.bioPic) {
-    var formattedPic = HTMLbioPic.replace('%data%', bio.bioPic);
-    $('#header').append(formattedPic);
-}
-
-if (bio.welcomeMessage) {
-    var formattedWelcomeMessage = HTMLwelcomeMsg.replace('%data%', bio.welcomeMessage);
-    $('#header').append(formattedWelcomeMessage);
-}
-
-if (bio.contacts) {
-    var formattedMobile = HTMLmobile.replace('%data%', bio.contacts.mobile);
-    $('#topContacts').append(formattedMobile);
-
-    var formattedEmail = HTMLemail.replace('%data%', bio.contacts.email);
-    $('#topContacts').append(formattedEmail);
-
-    var formattedTwitter = HTMLtwitter.replace('%data%', bio.contacts.twitter);
-    $('#topContacts').append(formattedTwitter);
-
-    var formattedGithub = HTMLgithub.replace('%data%', bio.contacts.github);
-    $('#topContacts').append(formattedGithub);
-
-    var formattedLocation = HTMLlocation.replace('%data%', bio.contacts.location);
-    $('#topContacts').append(formattedLocation);
-}
-
-
-if (bio.skills.length > 0) {
-    $('#header').append(HTMLskillsStart);
-
-    var formattedSkills = HTMLskills.replace('%data%', bio.skills[0]);
-    $('#skills').append(formattedSkills);
-
-    formattedSkills = HTMLskills.replace('%data%', bio.skills[1]);
-    $('#skills').append(formattedSkills);
-
-    formattedSkills = HTMLskills.replace('%data%', bio.skills[2]);
-    $('#skills').append(formattedSkills);
-
-    formattedSkills = HTMLskills.replace('%data%', bio.skills[3]);
-    $('#skills').append(formattedSkills);
-}
+bio.display();
 
 var education = {
     "schools": [{
@@ -135,11 +139,7 @@ projects.display = function() {
 
 projects.display();
 
-
-var work;
-
-function displayWork() {
-    work = {
+var work = {
         "jobs": [{
             title: "Java Web Developer",
             employer: "Lanqiao IT Company",
@@ -154,6 +154,8 @@ function displayWork() {
             description: 'the description content 2, the description content 2, the description content 2, the description content 2, the description content 2 '
         }]
     };
+
+work.displayWork= function() {
 
     for (var job in work.jobs) {
 
@@ -174,8 +176,7 @@ function displayWork() {
     }
 }
 
-displayWork();
-
+work.displayWork();
 
 $(document).click(function(loc) {
     var x = loc.pageX;
