@@ -19,7 +19,7 @@ gulp.task('scripts',function(){
 	gulp.src('js/resumeBuilder.js')
 		.pipe(gulpPlumber()) 
 		.pipe(uglify())
-		//.pipe(rename('resumeBuilder.min.js'))
+		.pipe(rename('resumeBuilder.min.js'))
 		.pipe(gulp.dest('js/'))
 		.pipe(connect.reload());
 });

@@ -1,18 +1,3 @@
-/*
-work
-work 包含一个 jobs 数组。jobs 数组中的每个对象 都应该包含 employer、title、location、工作 dates 和 description 字符串。
-
-projects
-projects 包含一个 projects 数组。projects 数组中的每个对象 都应该包含 title、dates 和 description 字符串 以及 images 数组，其中包含 项目图片的 URL 字符串。
-
-bio
-bio 包含 name、role、welcomeMessage 和 biopic 字符串， contacts 对象以及 skill 字符串的 skills 数组。contacts 对象 应包含 mobile 号码、email 地址、 github 用户名、twitter 句柄和 location。twitter 属性 是可选的。
-
-education
-education 包含一个 schools 数组。schools 数组中的每个对象 都包含 name、location、degree、dates 和 url 字符串，以及 major 字符串的 majors 数组。 
-
-education 还包含一个 onlineCourses 数组。onlineCourses 数组中的每个对象 都应该包含 title、school、dates 和 url 字符串。
-*/
 var bio = {
     "name": "CaoXiaohu",
     "role": "Java Senior Web Programmer",
@@ -103,16 +88,16 @@ var education = {
 
 var projects = {
     "projects": [{
-            "title": "Title 1",
+            "title": "Project Title 1",
             "dates": "Dates 1",
-            "desciption": "Desciption 1",
+            "desciption": "Project Desciption 1, Project Desciption 1, Project Desciption 1, Project Desciption 1, Project Desciption 1,Project Desciption 1, Project Desciption 1, Project Desciption 1, Project Desciption 1, Project Desciption 1",
             "images": [],
             "url": ""
         },
         {
-            "title": "Title 2",
+            "title": "Project Title 2",
             "dates": "Dates 2",
-            "desciption": "Desciption 2",
+            "desciption": "Project Desciption 2, Project Desciption 2, Project Desciption 2, Project Desciption 2, Project Desciption 2, Project Desciption 2, Project Desciption 2, Project Desciption 2, Project Desciption 2, Project Desciption 2, Project Desciption 2, Project Desciption 2",
             "images": [],
             "url": ""
         }
@@ -121,35 +106,37 @@ var projects = {
 
 projects.display = function() {
     for (var project in projects.projects) {
-		
-		if(projects.projects.hasOwnProperty(project)){
-			$("#projects").append(HTMLprojectStart);
 
-			var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
-			$(".project-entry:last").append(formattedTitle);
+        if (projects.projects.hasOwnProperty(project)) {
+            $("#projects").append(HTMLprojectStart);
 
-			var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
-			$(".project-entry:last").append(formattedDates);
+            var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
+            $(".project-entry:last").append(formattedTitle);
 
-			var formattedDesc = HTMLprojectDescription.replace("%data%", projects.projects[project].desciption);
-			$(".project-entry:last").append(formattedDesc);
+            var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
+            $(".project-entry:last").append(formattedDates);
 
-			if (projects.projects[project].images.length > 0) {
-				for (var image in projects.projects[project].images) {
-					if(projects.projects[project].images.hasOwnProperty(image)){
-						var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[project].images[image]);
-						$(".project-entry:last").append(formattedImage);					
-					}
-				}
-			}			
-		}
-		
+            var formattedDesc = HTMLprojectDescription.replace("%data%", projects.projects[project].desciption);
+            $(".project-entry:last").append(formattedDesc);
+
+            if (projects.projects[project].images.length > 0) {
+                for (var image in projects.projects[project].images) {
+                    if (projects.projects[project].images.hasOwnProperty(image)) {
+                        var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[project].images[image]);
+                        $(".project-entry:last").append(formattedImage);
+                    }
+                }
+            }
+        }
+
 
     }
 };
 
 projects.display();
 
+
+var work;
 
 function displayWork() {
     work = {
@@ -158,36 +145,36 @@ function displayWork() {
             employer: "Lanqiao IT Company",
             years: 0.3,
             dates: 'August 2016 - December 2016',
-            description: 'the description content 1......'
+            description: 'the description content 1, the description content 1, the description content 1, the description content 1,the description content 1'
         }, {
             title: "Java Web Developer",
             employer: "Shenzhen Coordinates Healthcare Information Technology Compony",
             years: 1.3,
             dates: 'Feburary 2014 - August 2016',
-            description: 'the description content 2......'
+            description: 'the description content 2, the description content 2, the description content 2, the description content 2, the description content 2 '
         }]
     };
 
-    displayWork();
-
     for (var job in work.jobs) {
-		
-		if(work.jobs.hasOwnProperty(job)){
-			$('#workExperience').append(HTMLworkStart);
-			var formattedEmployer = HTMLworkEmployer.replace('%data%', work.jobs[job].employer);
-			var formattedTitle = HTMLworkTitle.replace('%data%', work.jobs[job].title);
-			var formattedEmployerTitle = formattedEmployer + formattedTitle;
 
-			$('.work-entry:last').append(formattedEmployerTitle);
+        if (work.jobs.hasOwnProperty(job)) {
+            $('#workExperience').append(HTMLworkStart);
+            var formattedEmployer = HTMLworkEmployer.replace('%data%', work.jobs[job].employer);
+            var formattedTitle = HTMLworkTitle.replace('%data%', work.jobs[job].title);
+            var formattedEmployerTitle = formattedEmployer + formattedTitle;
 
-			var formattedDates = HTMLworkDates.replace('%data%', work.jobs[job].dates);
-			$('.work-entry:last').append(formattedDates);
-			var formattedDesc = HTMLworkDescription.replace('%data%', work.jobs[job].description);
-			$('.work-entry:last').append(formattedDesc);			
-		}
+            $('.work-entry:last').append(formattedEmployerTitle);
+
+            var formattedDates = HTMLworkDates.replace('%data%', work.jobs[job].dates);
+            $('.work-entry:last').append(formattedDates);
+            var formattedDesc = HTMLworkDescription.replace('%data%', work.jobs[job].description);
+            $('.work-entry:last').append(formattedDesc);
+        }
 
     }
 }
+
+displayWork();
 
 
 $(document).click(function(loc) {
