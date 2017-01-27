@@ -240,21 +240,21 @@ var work = {
 work.display = function() {
     var jobs = work.jobs;
     if (jobs && Array.isArray(jobs)) {
-        for (var job in work.jobs) {
-            if (work.jobs.hasOwnProperty(job)) {
+        work.jobs.forEach(function(job){
                 $('#workExperience').append(HTMLworkStart);
-                var formattedEmployer = HTMLworkEmployer.replace(dataPlaceHolder, work.jobs[job].employer);
-                var formattedTitle = HTMLworkTitle.replace(dataPlaceHolder, work.jobs[job].title);
+                var formattedEmployer = HTMLworkEmployer.replace(dataPlaceHolder, job.employer);
+                var formattedTitle = HTMLworkTitle.replace(dataPlaceHolder, job.title);
                 var formattedEmployerTitle = formattedEmployer + formattedTitle;
 
                 $('.work-entry:last').append(formattedEmployerTitle);
 
-                var formattedDates = HTMLworkDates.replace(dataPlaceHolder, work.jobs[job].dates);
+                var formattedDates = HTMLworkDates.replace(dataPlaceHolder, job.dates);
                 $('.work-entry:last').append(formattedDates);
-                var formattedDesc = HTMLworkDescription.replace(dataPlaceHolder, work.jobs[job].description);
+                var formattedDesc = HTMLworkDescription.replace(dataPlaceHolder, job.description);
                 $('.work-entry:last').append(formattedDesc);
-            }
-        }
+                var formattedLocation = HTMLworkLocation.replace(dataPlaceHolder, job.location);
+            $('.work-entry:last').append(formattedLocation);
+        })
     }
 };
 
